@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TesteLuizaLabs.Application\TesteLuizaLabs.Application.csproj" />
+    <ProjectReference Include="..\TesteLuizaLabs.Domain.Services\TesteLuizaLabs.Domain.Services.csproj" />
+    <ProjectReference Include="..\TesteLuizaLabs.Infrastructure.Repository\TesteLuizaLabs.Infrastructure.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

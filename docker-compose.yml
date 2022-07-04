@@ -1,0 +1,37 @@
+version: '3.8'
+
+networks:
+  magalu-api-dev:
+    driver: bridge 
+
+services:
+  magalu-api:
+    image: magalu-api:latest
+    depends_on:
+      - "postgres_image"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"     
+    environment:
+      DB_CONNECTION_STRING: "Host=postgres_image;Database=TesteLuizaLabs;Port=5432;User Id=postgres;Password=postgres;"
+    networks:
+      - magalu-api-dev  
+  
+  postgres_image:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    restart: always
+    volumes: 
+      - db_volume:/var/lib/postgresql/data
+      - ./dbscripts/seed.sql :/docker-entrypoint-initdb.d/seed.sql
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "TesteLuizaLabs"
+    networks:
+      - magalu-api-dev   
+volumes:
+  db_volume:
